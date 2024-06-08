@@ -1,0 +1,5 @@
+07:02:57 15:26:34 611768947 729076904 . C:\Users\polit\AppData\Local\Programs\OperaGX\launcher.exe
+09:57:06 11:22:39 19868829 93529961 . E:\TelegramDesktop\telegram.exe 
+06:12:00 17:45:26 360444891 18831383 . D:\Steam\steam.exe
+04:51:29 23:38:26 4153669 59094142 . E:\TelegramDesktop\telegram.exe
+05:17:56 18:00:46 558144265 91071793 . C:\Users\polit\AppData\Local\Skype\skype.exe
