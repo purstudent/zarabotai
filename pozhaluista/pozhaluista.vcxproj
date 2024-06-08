@@ -133,10 +133,12 @@
     <ClInclude Include="constants.h" />
     <ClInclude Include="ethernet_protocole.h" />
     <ClInclude Include="file_reader.h" />
+    <ClInclude Include="processing.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file_reader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="processing.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,6 +6,7 @@ using namespace std;
 #include "ethernet_protocole.h"
 #include "file_reader.h"
 #include "constants.h"
+#include "processing.h"
 
 
 int main()
@@ -88,13 +89,17 @@ int main()
                 cout << subscriptions[i]->dispatched.number << "Б\n\n";
             }
         }
-        cout << "************************* TEST ПРОГРАММА ********************************\n";
+        cout << "************************* ВЫВОД ПОСЛЕ СОРТИРОВКИ ********************************\n";
         for (int i = 1; i < size; i++) {
-            int sessiontime1 = (subscriptions[i]->end.hour - subscriptions[i]->start.hour) * 3600 + (subscriptions[i]->end.minute - subscriptions[i]->start.minute) * 60 + (subscriptions[i]->end.second - subscriptions[i]->start.second);
+            int sessiontime1 = (subscriptions[i]->end.hour - subscriptions[i]->start.hour)
+                * 3600 + (subscriptions[i]->end.minute - subscriptions[i]->start.minute)
+                * 60 + (subscriptions[i]->end.second - subscriptions[i]->start.second);
             ethernet_protocole* key = subscriptions[i];
             int j = i - 1;
             for (j; j >= 0; j--) {
-                int sessiontime2 = (subscriptions[j]->end.hour - subscriptions[j]->start.hour) * 3600 + (subscriptions[j]->end.minute - subscriptions[j]->start.minute) * 60 + (subscriptions[j]->end.second - subscriptions[j]->start.second);
+                int sessiontime2 = (subscriptions[j]->end.hour - subscriptions[j]->start.hour)
+                    * 3600 + (subscriptions[j]->end.minute - subscriptions[j]->start.minute)
+                    * 60 + (subscriptions[j]->end.second - subscriptions[j]->start.second);
                 if (sessiontime2 > sessiontime1) {
                     subscriptions[j + 1] = subscriptions[j];
                     subscriptions[j] = key;
@@ -123,6 +128,22 @@ int main()
             cout << "Отправлено (данных на): ";
             cout << subscriptions[i]->dispatched.number << "Б\n\n";
         }
+        cout << "************************ TEST PROGRAM **************************";
+        int intsumtime = 0;
+        char user_string[MAX_STRING_SIZE];
+        cout << "\nВведите название программы (с большой буквы): ";
+        cin >> user_string;
+        for (int i = 0; i < size; i++) {
+            intsumtime += sumtime(user_string, subscriptions[i]->path,
+                subscriptions[i]->start.hour, subscriptions[i]->start.minute, 
+                subscriptions[i]->start.second, subscriptions[i]->end.hour, 
+                subscriptions[i]->end.minute, subscriptions[i]->end.second);
+        }
+        int sumhours = intsumtime / 3600;
+        int summinutes = intsumtime / 60 % 60;
+        int sumseconds = intsumtime % 3600 % 60;
+        cout << "Суммарно в указанной программе было проведено " << sumhours << " часов, " <<
+            summinutes << " минут и " << sumseconds << " секунд.";
         for (int i = 0; i < size; i++)
         {
             delete subscriptions[i];
